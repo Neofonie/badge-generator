@@ -25,7 +25,8 @@
 
 <style lang="less">
   @selector: .badge;
-  @{selector} {
+  @{selector}{
+    overflow: hidden;
     display: flex;
     justify-items: flex-start;
     align-items: center;

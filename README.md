@@ -1,6 +1,6 @@
-# y
+# Badge Generator
 
-> A Vue.js project
+> Created at Hackaton Neofonie 26.04.19. A Vue.js project of Willy Woitas
 
 ## Build Setup
 

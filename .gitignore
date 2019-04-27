@@ -6,6 +6,8 @@ yarn-error.log
 npm-debug.log
 
 # Editor directories and files
+.idea
+.ideaBak
 .vscode
 *.suo
 *.ntvs*

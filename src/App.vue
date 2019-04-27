@@ -1,0 +1,55 @@
+<template>
+  <div id="app">
+    <Overvue></Overvue>
+  </div>
+</template>
+
+<style lang="less">
+  body {
+    font-family: Helvetica, Verdana, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  @media print {
+    .fas {
+      display: none;
+    }
+  }
+
+  :root {
+    --base: 16px;
+    --base-half: calc(var(--base) / 2);
+    --base-double: calc(var(--base) * 2.5);
+    --font: var(--base);
+    --font-big: calc(var(--font)*1.5);
+    --font-bigger: calc(var(--font)*3);
+    --clr-black: #000;
+    --clr-red: #E60023;
+    --clr-grey: #ccc;
+  }
+
+  .fas {
+    cursor: pointer;
+
+    &:hover {
+      color: var(--clr-red) !important;
+      text-shadow: 0px 0px 4px rgba(0,0,0,0.25);
+    }
+  }
+</style>
+
+<script>
+  import Overvue from './components/Over.vue'
+
+  export default {
+    name: 'app',
+    components: {
+      Overvue,
+    }
+  }
+</script>

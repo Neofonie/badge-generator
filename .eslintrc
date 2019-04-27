@@ -1,0 +1,16 @@
+{
+  "extends": "standard",
+  "plugins": [
+    "html"
+  ],
+  "env": {
+    "jasmine": true,
+    "es6": true
+  },
+  "rules": {
+    "space-before-function-paren": ["warn"],
+    "no-unused-vars": ["warn"],
+    "comma-dangle": ["warn"],
+    "semi": ["warn"]
+  }
+}

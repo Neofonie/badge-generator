@@ -2,6 +2,8 @@
 
 > Created at Hackaton Neofonie 26.04.19. A Vue.js project of Willy Woitas
 
+See Generator here: https://neofonie.github.io/badge-generator/
+
 ## Build Setup
 
 ``` bash
@@ -14,11 +16,4 @@ npm run dev
 # build for production with minification
 npm run build
 
-# lint all *.js and *.vue files
-npm run lint
-
-# run unit tests
-npm test
 ```
-
-For more information see the [docs for vueify](https://github.com/vuejs/vueify).

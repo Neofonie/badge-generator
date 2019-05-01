@@ -1,6 +1,7 @@
 # Badge Generator
 
-> Created at Hackaton Neofonie 26.04.19. A Vue.js project of Willy Woitas
+> Created at Hackaton Neofonie 26.04.19. 
+> A Vue.js project by dutscher
 
 See Generator here: https://neofonie.github.io/badge-generator/
 

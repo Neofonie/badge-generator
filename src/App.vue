@@ -24,6 +24,7 @@
   :root {
     --base: 16px;
     --base-half: calc(var(--base) / 2);
+    --base-quarter: calc(var(--base) / 4);
     --base-double: calc(var(--base) * 2.5);
     --font: var(--base);
     --font-big: calc(var(--font)*1.5);

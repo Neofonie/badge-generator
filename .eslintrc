@@ -8,9 +8,11 @@
     "es6": true
   },
   "rules": {
-    "space-before-function-paren": ["warn"],
-    "no-unused-vars": ["warn"],
-    "comma-dangle": ["warn"],
-    "semi": ["warn"]
+    "space-before-function-paren": ["off"],
+    "no-trailing-spaces": ["off"],
+    "no-undef": ["off"],
+    "no-unused-vars": ["off"],
+    "comma-dangle": ["off"],
+    "semi": ["off"]
   }
 }

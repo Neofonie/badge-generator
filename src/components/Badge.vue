@@ -1,31 +1,6 @@
-<template>
-  <div v-bind:class="[
-    'badge',
-    `badge--${size}`,
-    !showBorder ? 'badge--without-border' : '',
-  ]">
-    <div v-if="icon" class="badge__icon">
-      <img v-bind:class="[
-        'badge__icon__img',
-        `badge__icon__img--${iconStyle}`
-      ]"
-           v-bind:src="icon"/>
-    </div>
-    <div class="badge__label">
-      <span v-if="!isEditMode">{{ label }}</span>
-      <input v-if="isEditMode"
-             v-bind:value="label"
-             v-on:input="onInput($event, index)"
-             @keyup.enter="onModeChange(false, index)"
-             type="text"
-             class="badge__label__input"/>
-    </div>
-  </div>
-</template>
-
 <style lang="less">
   @selector: .badge;
-  @{selector}{
+  @{selector} {
     overflow: hidden;
     display: flex;
     justify-items: flex-start;
@@ -34,7 +9,7 @@
 
     &__icon {
       height: 100%;
-      padding: var(--base-half);
+      padding: var(--base-quarter);
 
       &__img {
         display: block;
@@ -57,7 +32,7 @@
     }
 
     &__label {
-      padding-left: var(--base);
+      padding-left: var(--base-quarter);
 
       &__input {
         font-size: inherit;
@@ -74,107 +49,75 @@
 
     &,
     &--small {
-      &,
-      .dpi-300 & {
-        width: 709px;
-        height: 142px;
+      width: 6cm;
+      height: 1.2cm;
 
-        @{selector} {
-          &__label {
-            font-size: 70px;
-          }
+      @{selector} {
+        &__icon__img {
+          width: 35px;
         }
-      }
 
-      .dpi-150 & {
-        width: 355px;
-        height: 71px;
-
-        @{selector} {
-          &__icon__img {
-            width: 53px;
-          }
-
-          &__label {
-            font-size: 42px;
-          }
-        }
-      }
-
-      .dpi-72 & {
-        width: 170px;
-        height: 34px;
-
-        @{selector} {
-          &__icon__img {
-            width: 16px;
-          }
-
-          &__label {
-            padding-left: var(--base-half);
-            font-size: 23px;
-          }
+        &__label {
+          font-size: 36px;
         }
       }
     }
 
     &--big {
-      &,
-      .dpi-300 & {
-        width: 709px;
-        height: 201px;
+      width: 6cm;
+      height: 1.7cm;
 
-        @{selector} {
-          &__label {
-            font-size: 120px;
-          }
+      @{selector} {
+        &__icon__img {
+          width: 54px;
         }
-      }
 
-      .dpi-150 & {
-        width: 355px;
-        height: 101px;
-
-        @{selector} {
-          &__icon__img {
-            width: 83px;
-          }
-
-          &__label {
-            font-size: 70px;
-          }
-        }
-      }
-
-      .dpi-72 & {
-        width: 170px;
-        height: 48px;
-
-        @{selector} {
-          &__icon__img {
-            width: 30px;
-          }
-
-          &__label {
-            padding-left: var(--base-half);
-            font-size: 30px;
-          }
+        &__label {
+          font-size: 52px;
         }
       }
     }
   }
 </style>
 
+<template>
+  <div
+    v-bind:class="[
+      'badge',
+      `badge--${size}`,
+      !showBorder ? 'badge--without-border' : '',
+    ]"
+    v-bind:style="{backgroundColor: badgeClr}">
+    <div v-if="icon"
+         class="badge__icon">
+      <img
+        v-bind:style="{backgroundColor: iconClr}"
+        v-bind:class="[
+          'badge__icon__img',
+          `badge__icon__img--${iconStyle}`
+        ]"
+        v-bind:src="icon"/>
+    </div>
+    <div class="badge__label">
+      <span
+        v-bind:style="{color:labelClr}"
+        v-if="!isEditMode">{{ label }}</span>
+      <input
+        v-if="isEditMode"
+        v-bind:value="label"
+        v-bind:style="{color:labelClr}"
+        v-on:input="onInput($event, index)"
+        @keyup.enter="onModeChange(false, index)"
+        type="text"
+        class="badge__label__input"/>
+    </div>
+  </div>
+</template>
+
 <script>
   const componentName = 'Badge';
   export default {
     name: componentName,
-    data() {
-      return {
-        _showBorder: true,
-        _isEditMode: false,
-      }
-    },
     props: {
       index: {
         type: Number,
@@ -191,15 +134,28 @@
         type: String,
         default: 'small', // big | small
       },
+      badgeClr: {
+        type: String,
+        default: '#fff',
+      },
       label: {
         type: String,
       },
+      labelClr: {
+        type: String,
+        default: '#000',
+      },
       icon: {
         type: String,
+        default: '',
+      },
+      iconClr: {
+        type: String,
+        default: '#ccc',
       },
       iconStyle: {
         type: String,
-        default: 'square', // square | circle | round | triangle
+        default: 'round', // square | circle | round | triangle
       },
       onInput: {
         type: Function,
@@ -209,6 +165,12 @@
       },
     },
     watch: {
+      icon(nue) {
+        this.icon = nue;
+      },
+      iconClr(nue) {
+        this.iconClr = nue;
+      },
       showBorder(nue) {
         this.showBorder = nue;
       },

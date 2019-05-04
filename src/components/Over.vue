@@ -1,5 +1,5 @@
 <style lang="less">
-  @import "../../node_modules/v-color/dist/index.css";
+  @import (less) "../../node_modules/v-color/dist/index.css";
 
   @selector: .overvue;
   @{selector} {
@@ -134,7 +134,11 @@
       ]">
         <div class="overvue__badge"
              v-for="(data, key) in badges">
-          <div class="overvue__badge__wrap">
+
+          <div class="overvue__badge__wrap"
+               v-on:mouseover="toggleEdit(key, true)"
+               v-on:mouseleave="toggleEdit(key, false)">
+
             <span class="overvue__badge__edit-bar--right">
               <i class="fas fa-plus-circle"
                  v-on:click="duplicate(key)"></i>
@@ -144,8 +148,9 @@
 
             <span class="overvue__badge__edit-bar">
               <i class="fas fa-pen-square"
-                 v-bind:class="{ active: data.isEditMode }"
-                 v-on:click="toggleEdit(key)"></i>
+                 v-bind:class="{
+                  active:data.isEditMode
+                 }"></i>
               <span
                 class="overvue__badge__sub-bar"
                 v-if="data.isEditMode">
@@ -329,11 +334,15 @@
         // iterate through styles
         this.badges[index].iconStyle = nextStyle;
       },
-      toggleEdit(index) {
-        this.badges[index].isEditMode = !this.badges[index].isEditMode;
+      toggleEdit(index, isEditMode) {
+        this.badges[index].isEditMode = isEditMode;
+
+        if (!isEditMode) {
+          this.badges[index].showClrPicker = '';
+        }
       },
       triggerUpload(index) {
-        this.$refs.fileInput[index].click()
+        this.$refs.fileInput[0].click()
       },
       image(event, index) {
         const reader = new FileReader();

@@ -252,12 +252,6 @@
             break;
         }
 
-        console.log(
-          direction,
-          'nextPosX', nextPosX,
-          'nextPosY', nextPosY
-        )
-
         if (nextPosX !== '') {
           this.iconPositionX = nextPosX;
         }

@@ -11,7 +11,7 @@
     "dev": "npm-run-all --parallel watchify serve",
     "lint": "eslint --ext .js,.vue src test/unit",
     "test": "karma start karma.conf.js",
-    "build": "cross-env NODE_ENV=production browserify -g envify -p [ vueify/plugins/extract-css -o dist/build.css ] -e src/main.js | uglifyjs -c warnings=false -m > dist/build.js"
+    "build": "cross-env NODE_ENV=production browserify -g envify -p [ vueify/plugins/extract-css -o docs/build.css ] -e src/main.js | uglifyjs -c warnings=false -m > docs/build.js"
   },
   "browserify": {
     "transform": [
@@ -23,7 +23,7 @@
     "vue": "vue/dist/vue.common.js"
   },
   "dependencies": {
-    "vue": "^2.0.1"
+    "vue": "^2.6.10"
   },
   "devDependencies": {
     "babel-core": "^6.0.0",
@@ -55,6 +55,7 @@
     "uglify-js": "^2.5.0",
     "vueify": "^9.0.0",
     "watchify": "^3.4.0",
-    "v-color": "latest"
+    "v-color": "latest",
+    "vue-wheel": "latest"
   }
 }

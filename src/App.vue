@@ -16,7 +16,12 @@
   }
 
   @media print {
-    .fas {
+    body {
+      -webkit-print-color-adjust: exact !important;
+    }
+
+    .fas,
+    .overvue__settings {
       display: none;
     }
   }
@@ -27,8 +32,8 @@
     --base-quarter: calc(var(--base) / 4);
     --base-double: calc(var(--base) * 2.5);
     --font: var(--base);
-    --font-big: calc(var(--font)*1.5);
-    --font-bigger: calc(var(--font)*3);
+    --font-big: calc(var(--font) * 1.5);
+    --font-bigger: calc(var(--font) * 3);
     --clr-black: #000;
     --clr-red: #E60023;
     --clr-grey: #ccc;
@@ -39,7 +44,7 @@
 
     &:hover {
       color: var(--clr-red) !important;
-      text-shadow: 0px 0px 4px rgba(0,0,0,0.25);
+      text-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
     }
   }
 </style>
@@ -51,6 +56,6 @@
     name: 'app',
     components: {
       Overvue,
-    }
+    },
   }
 </script>

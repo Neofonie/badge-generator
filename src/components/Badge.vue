@@ -14,7 +14,7 @@
       &__img {
         display: block;
         height: 100%;
-        background: var(--clr-grey);
+        background-repeat: no-repeat;
 
         //  square | circle | round | triangle
         &--circle {
@@ -90,13 +90,26 @@
     v-bind:style="{backgroundColor: badgeClr}">
     <div v-if="icon"
          class="badge__icon">
-      <img
-        v-bind:style="{backgroundColor: iconClr}"
+      <div
+        tabindex="0"
+        v-on:dblclick="containIcon"
+        v-on:wheel.prevent="resizeIcon"
+        v-on:keypress.prevent
+        v-on:keydown.up.prevent="setIconOrigin"
+        v-on:keydown.down.prevent="setIconOrigin"
+        v-on:keydown.right.prevent="setIconOrigin"
+        v-on:keydown.left.prevent="setIconOrigin"
+        v-bind:style="{
+          backgroundColor: iconClr,
+          backgroundImage: `url(${icon})`,
+          backgroundSize: iconSize,
+          backgroundPosition: `${this.iconPositionX} ${this.iconPositionY}`,
+        }"
         v-bind:class="[
           'badge__icon__img',
           `badge__icon__img--${iconStyle}`
         ]"
-        v-bind:src="icon"/>
+      ></div>
     </div>
     <div class="badge__label">
       <span
@@ -118,6 +131,13 @@
   const componentName = 'Badge';
   export default {
     name: componentName,
+    data() {
+      return {
+        iconSize: '',
+        iconPositionX: 'center',
+        iconPositionY: 'center',
+      };
+    },
     props: {
       index: {
         type: Number,
@@ -176,7 +196,75 @@
       },
       isEditMode(nue) {
         this.isEditMode = nue;
-      }
+      },
     },
+    methods: {
+      containIcon() {
+        this.iconSize = this.iconSize === '' ? 'contain' : '';
+      },
+      resizeIcon(event) {
+        // default: iconSize: contain;
+        const deltaY = event.deltaY;
+        const acutalSize = parseInt(this.iconSize === 'contain' || this.iconSize === '' ? '100%' : this.iconSize);
+        // up -> bigger
+        if (deltaY > 0) {
+          this.iconSize = (acutalSize + 10) + '%';
+          // down -> smaller
+        } else {
+          this.iconSize = (acutalSize - 10) + '%';
+        }
+      },
+      setIconOrigin(event) {
+        // top - center - bottom
+        // default: backgroundPosition: top center;
+        const direction = event.code;
+        const currentPosX = this.iconPositionX;
+        const currentPosY = this.iconPositionY;
+        let nextPosX = '';
+        let nextPosY = '';
+
+        switch (direction) {
+          case 'ArrowUp':
+            nextPosY = 'top';
+            if (currentPosY === 'bottom') {
+              nextPosY = 'center';
+            }
+            break;
+          case 'ArrowDown':
+            if (currentPosY === 'top') {
+              nextPosY = 'center';
+            } else if (currentPosY === 'center') {
+              nextPosY = 'bottom';
+            }
+            break;
+          case 'ArrowRight':
+            if (currentPosX === 'left') {
+              nextPosX = 'center';
+            } else if (currentPosX === 'center') {
+              nextPosX = 'right';
+            }
+            break;
+          case 'ArrowLeft':
+            nextPosX = 'left';
+            if (currentPosX === 'right') {
+              nextPosX = 'center';
+            }
+            break;
+        }
+
+        console.log(
+          direction,
+          'nextPosX', nextPosX,
+          'nextPosY', nextPosY
+        )
+
+        if (nextPosX !== '') {
+          this.iconPositionX = nextPosX;
+        }
+        if (nextPosY !== '') {
+          this.iconPositionY = nextPosY;
+        }
+      }
+    }
   }
 </script>

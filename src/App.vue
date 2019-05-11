@@ -16,13 +16,16 @@
   }
 
   @media print {
-    body {
-      -webkit-print-color-adjust: exact !important;
+    .fas {
+      display: none;
     }
 
-    .fas,
     .overvue__settings {
       display: none;
+    }
+
+    body {
+      -webkit-print-color-adjust: exact !important;
     }
   }
 

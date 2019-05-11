@@ -16,9 +16,10 @@
         height: 100%;
         background-repeat: no-repeat;
 
-        //  square | circle | round | triangle
+        // https://bennettfeely.com/clippy/
         &--circle {
           clip-path: circle(49% at center);
+          //clip-path: circle(50% at 50% 50%);
         }
 
         &--triangle {
@@ -28,6 +29,14 @@
         &--round {
           border-radius: 33%;
         }
+
+        &--rhombus {
+          clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+        }
+
+        &--star {
+          clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+        }
       }
     }
 
@@ -36,9 +45,8 @@
 
       &__input {
         font-size: inherit;
-        width: 85%;
+        width: 100%;
         border: 0;
-        outline: solid 1px var(--clr-black);
         background: var(--clr-grey)
       }
     }
@@ -84,11 +92,11 @@
   <div
     v-bind:class="[
       'badge',
-      `badge--${size}`,
+      `badge--${data.badge.size}`,
       !showBorder ? 'badge--without-border' : '',
     ]"
-    v-bind:style="{backgroundColor: badgeClr}">
-    <div v-if="icon"
+    v-bind:style="{backgroundColor: data.badge.clr}">
+    <div v-if="data.icon.base64"
          class="badge__icon">
       <div
         tabindex="0"
@@ -100,27 +108,27 @@
         v-on:keydown.right.prevent="setIconOrigin"
         v-on:keydown.left.prevent="setIconOrigin"
         v-bind:style="{
-          backgroundColor: iconClr,
-          backgroundImage: `url(${icon})`,
-          backgroundSize: iconSize,
-          backgroundPosition: `${this.iconPositionX} ${this.iconPositionY}`,
+          backgroundColor: data.icon.clr,
+          backgroundImage: `url(${data.icon.base64})`,
+          backgroundSize: data.icon.size,
+          backgroundPosition: `${data.icon.x} ${data.icon.y}`,
         }"
         v-bind:class="[
           'badge__icon__img',
-          `badge__icon__img--${iconStyle}`
+          `badge__icon__img--${data.icon.style}`
         ]"
       ></div>
     </div>
     <div class="badge__label">
       <span
-        v-bind:style="{color:labelClr}"
-        v-if="!isEditMode">{{ label }}</span>
+        v-bind:style="{color:data.label.clr}"
+        v-if="!data.isEditMode">{{data.label.value}}</span>
       <input
-        v-if="isEditMode"
-        v-bind:value="label"
-        v-bind:style="{color:labelClr}"
-        v-on:input="onInput($event, index)"
-        @keyup.enter="onModeChange(false, index)"
+        v-if="data.isEditMode"
+        v-bind:value="data.label.value"
+        v-bind:style="{color:data.label.clr}"
+        v-on:input="onChange('label', $event.target.value, index)"
+        @keyup.enter="onChange('isEditMode', false, index)"
         type="text"
         class="badge__label__input"/>
     </div>
@@ -131,95 +139,105 @@
   const componentName = 'Badge';
   export default {
     name: componentName,
-    data() {
-      return {
-        iconSize: '',
-        iconPositionX: 'center',
-        iconPositionY: 'center',
-      };
-    },
     props: {
       index: {
         type: Number,
-      },
-      isEditMode: {
-        type: Boolean,
-        default: false,
       },
       showBorder: {
         type: Boolean,
         default: true,
       },
-      size: {
-        type: String,
-        default: 'small', // big | small
-      },
-      badgeClr: {
-        type: String,
-        default: '#fff',
-      },
-      label: {
-        type: String,
-      },
-      labelClr: {
-        type: String,
-        default: '#000',
-      },
-      icon: {
-        type: String,
-        default: '',
-      },
-      iconClr: {
-        type: String,
-        default: '#ccc',
-      },
-      iconStyle: {
-        type: String,
-        default: 'round', // square | circle | round | triangle
-      },
-      onInput: {
+      onChange: {
         type: Function,
       },
-      onModeChange: {
-        type: Function,
+      data: {
+        type: Object,
+        isEditMode: {
+          type: Boolean,
+          default: false,
+        },
+        badge: {
+          type: Object,
+          size: {
+            type: String,
+            default: 'small', // big | small
+          },
+          clr: {
+            type: String,
+            default: '#fff',
+          },
+          default: 'small', // big | small
+        },
+        icon: {
+          type: Object,
+          base64: {
+            type: String,
+            default: '',
+          },
+          clr: {
+            type: String,
+            default: '#ccc',
+          },
+          style: {
+            type: String,
+            default: 'round', // square | circle | round | triangle
+          },
+          size: {
+            type: String,
+            default: 'contain',
+          },
+          x: {
+            type: String,
+            default: 'center',
+          },
+          y: {
+            type: String,
+            default: 'center',
+          },
+        },
+        label: {
+          type: Object,
+          value: {
+            type: String,
+          },
+          clr: {
+            type: String,
+            default: '#000',
+          },
+        },
       },
     },
     watch: {
-      icon(nue) {
-        this.icon = nue;
-      },
-      iconClr(nue) {
-        this.iconClr = nue;
-      },
       showBorder(nue) {
         this.showBorder = nue;
-      },
-      isEditMode(nue) {
-        this.isEditMode = nue;
       },
     },
     methods: {
       containIcon() {
-        this.iconSize = this.iconSize === '' ? 'contain' : '';
+        this.data.icon.size = this.data.icon.size === '' ? 'contain' : '';
       },
       resizeIcon(event) {
         // default: iconSize: contain;
         const deltaY = event.deltaY;
-        const acutalSize = parseInt(this.iconSize === 'contain' || this.iconSize === '' ? '100%' : this.iconSize);
+        const acutalSize = parseInt(
+          this.data.icon.size === 'contain' ||
+          this.data.icon.size === ''
+            ? '100%'
+            : this.data.icon.size);
         // up -> bigger
         if (deltaY > 0) {
-          this.iconSize = (acutalSize + 10) + '%';
+          this.data.icon.size = (acutalSize + 10) + '%';
           // down -> smaller
         } else {
-          this.iconSize = (acutalSize - 10) + '%';
+          this.data.icon.size = (acutalSize - 10) + '%';
         }
       },
       setIconOrigin(event) {
         // top - center - bottom
         // default: backgroundPosition: top center;
         const direction = event.code;
-        const currentPosX = this.iconPositionX;
-        const currentPosY = this.iconPositionY;
+        const currentPosX = this.data.icon.x;
+        const currentPosY = this.data.icon.y;
         let nextPosX = '';
         let nextPosY = '';
 
@@ -253,10 +271,10 @@
         }
 
         if (nextPosX !== '') {
-          this.iconPositionX = nextPosX;
+          this.data.icon.x = nextPosX;
         }
         if (nextPosY !== '') {
-          this.iconPositionY = nextPosY;
+          this.data.icon.y = nextPosY;
         }
       }
     }

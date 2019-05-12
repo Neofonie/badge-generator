@@ -16,10 +16,7 @@
   }
 
   @media print {
-    .fas {
-      display: none;
-    }
-
+    .fas,
     .overvue__settings {
       display: none;
     }

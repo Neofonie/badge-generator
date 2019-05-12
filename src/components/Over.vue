@@ -77,16 +77,6 @@
           text-align: center;
           margin-right: var(--base-quarter);
         }
-
-        &__clrpikr {
-          position: relative;
-
-          .cp__wrapper {
-            position: absolute;
-            z-index: 1;
-            left: 1px;
-          }
-        }
       }
 
       .fas {
@@ -214,18 +204,15 @@
                     'fa-search-plus': data.badge.size === 'small',
                    }"
                    v-on:click="badgeStyle(key)"></i>
-                <span class="overvue__badge__sub-bar__clrpikr">
-                  <i title="choose badge background color"
-                     class="fas fa-palette"
-                     v-bind:class="{
-                      active: data.showClrPicker === 'badge',
-                     }"
-                     v-on:click="toggleClrPicker(key, 'badge')"></i>
-                  <color-picker
-                    v-if="data.showClrPicker === 'badge'"
-                    v-bind:color="data.badge.clr"
-                    v-on:change="changeClr($event, key, 'badge')"></color-picker>
-                </span>
+                <ClrPikr
+                  title="choose badge background color"
+                  type="badge"
+                  v-bind:badgeKey="key"
+                  v-bind:show="data.showClrPicker"
+                  v-bind:clr="data.badge.clr"
+                  v-bind:onToggle="toggleClrPicker"
+                  v-bind:onChange="changeClr"
+                />
                 <span class="overvue__badge__sub-bar__spacer">
                   |
                 </span>
@@ -242,44 +229,33 @@
                     v-on:change="image($event, key)"/>
                   <i title="icon style"
                      class="overvue__badge__sub-bar__icon-style fas"
-                     v-bind:class="{
-                      active: true,
-                      'fa-circle': data.icon.style === 'circle',
-                      'fa-sort-up': data.icon.style === 'triangle',
-                      'fa-square': data.icon.style === 'round',
-                      'fa-square-full': data.icon.style === 'square',
-                      'fa-star': data.icon.style === 'star',
-                      'fa-directions': data.icon.style === 'rhombus',
-                     }"
+                     v-bind:class="[
+                      'active',
+                      `fa-${faClassName(data.icon.style)}`,
+                     ]"
                      v-on:click="iconStyle(key)"></i>
                 </span>
-                <span class="overvue__badge__sub-bar__clrpikr">
-                  <i title="choose icon background color"
-                     class="fas fa-palette"
-                     v-bind:class="{
-                      active: data.showClrPicker === 'icon',
-                     }"
-                     v-on:click="toggleClrPicker(key, 'icon')"></i>
-                  <color-picker
-                    v-if="data.showClrPicker === 'icon'"
-                    v-bind:color="data.icon.clr"
-                    v-on:change="changeClr($event, key, 'icon')"></color-picker>
-                </span>
+                <ClrPikr
+                  title="choose icon background color"
+                  type="icon"
+                  v-bind:badgeKey="key"
+                  v-bind:show="data.showClrPicker"
+                  v-bind:clr="data.icon.clr"
+                  v-bind:onToggle="toggleClrPicker"
+                  v-bind:onChange="changeClr"
+                />
                 <span class="overvue__badge__sub-bar__spacer">
                   |
                 </span>
-                <span class="overvue__badge__sub-bar__clrpikr">
-                  <i title="choose label color"
-                     class="fas fa-palette"
-                     v-bind:class="{
-                      active: data.showClrPicker === 'label',
-                     }"
-                     v-on:click="toggleClrPicker(key, 'label')"></i>
-                  <color-picker
-                    v-if="data.showClrPicker === 'label'"
-                    v-bind:color="data.label.clr"
-                    v-on:change="changeClr($event, key, 'label')"></color-picker>
-                </span>
+                <ClrPikr
+                  title="choose label color"
+                  type="label"
+                  v-bind:badgeKey="key"
+                  v-bind:show="data.showClrPicker"
+                  v-bind:clr="data.label.clr"
+                  v-bind:onToggle="toggleClrPicker"
+                  v-bind:onChange="changeClr"
+                />
               </span>
             </span>
 
@@ -298,22 +274,28 @@
 </template>
 
 <script>
-  // https://github.com/v-comp/v-color/blob/master/demo.js
-  import ColorPicker from '../../node_modules/v-color/dist/index.esm';
+  import ClrPikr from './ClrPikr.vue';
   import Badge from './Badge.vue';
 
   export default {
     name: 'Overvue',
     components: {
       Badge,
-      ColorPicker,
+      ClrPikr,
     },
     data() {
       return {
         defaults: {
           docsizes: ['A2', 'A3', 'A4', 'A5'],
           docsizeFormats: ['portrait', 'landscape'],
-          styles: ['circle', 'triangle', 'round', 'square', 'star', 'rhombus'],
+          styles: [
+            {name: 'circle', fa: 'circle'},
+            {name: 'triangle', fa: 'sort-up'},
+            {name: 'round', fa: 'square'},
+            {name: 'square', fa: 'square-full'},
+            {name: 'star', fa: 'star'},
+            {name: 'rhombus', fa: 'directions'},
+          ],
         },
         docsize: 'A4',
         docsizeFormat: 'portrait',
@@ -423,13 +405,25 @@
         // 'data:' + file.type + ';base64,' +
         this.badges[index].icon.base64 = base64;
       },
+
+      faClassName(iconStyle) {
+        const foundStyle = this.defaults.styles.filter((style) => {
+          return style.name === iconStyle;
+        })[0];
+        return foundStyle.fa;
+      },
       iconStyle(index) {
         const styles = this.defaults.styles;
         const actualStyle = this.badges[index].icon.style;
-        const actualStyleIndex = styles.indexOf(actualStyle);
+        let actualStyleIndex = 0;
+        this.defaults.styles.map((style, index) => {
+          if (style.name === actualStyle) {
+            actualStyleIndex = index;
+          }
+        });
         const nextStyle = styles[actualStyleIndex + 1] || styles[0];
         // iterate through styles
-        this.badges[index].icon.style = nextStyle;
+        this.badges[index].icon.style = nextStyle.name;
       },
 
       toggleClrPicker(index, type) {

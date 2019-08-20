@@ -25,7 +25,7 @@
 
     &__badge {
       &__wrap {
-        display: inline-block;
+        display: block;
         position: relative;
       }
 
@@ -171,6 +171,12 @@
     <div class="overvue__settings">
       Badges: <input type="checkbox" v-model="uniqueBadges"/> unique?
     </div>
+    <div class="overvue__settings">
+      <a href="https://i.imgur.com/DgAvt28.png">Firefox issue with no images on print & preview?</a>
+    </div>
+    <div class="only-print">
+      Beaware of 100% scaling.
+    </div>
     <div v-bind:class="[
         'overvue__badges',
         `docsize docsize--${docsize}${docsizeFormat === 'landscape' ? '--' + docsizeFormat : ''}`,
@@ -277,6 +283,21 @@
   import ClrPikr from './ClrPikr.vue';
   import Badge from './Badge.vue';
 
+  function copy (o) { // copy object or array
+    let output, v, key;
+    output = Array.isArray(o) ? [] : {};
+
+    for (key in o) {
+      v = o[key];
+      if (v) {
+        output[key] = (typeof v === 'object') ? copy(v) : v;
+      } else {
+        output[key] = v;
+      }
+    }
+    return output;
+  }
+
   export default {
     name: 'Overvue',
     components: {
@@ -344,7 +365,7 @@
           isEditMode: false,
           showClrPicker: '',
           badge: {
-            size: 'small',
+            size: 'big',
             clr: '#fff',
           },
           icon: {
@@ -363,7 +384,7 @@
         let data = this.badges[lastKey];
         // unique badges
         if (this.uniqueBadges) {
-          data = {...this.badges[lastKey]}
+          data = copy(this.badges[lastKey]);
         }
         data.isEditMode = false;
         this.badges.splice(lastKey + 1, 0, data);

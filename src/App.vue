@@ -14,11 +14,26 @@
   * {
     box-sizing: border-box;
   }
+  
+  .only-print {
+    display: none;
+  }
 
   @media print {
-    .fas,
-    .overvue__settings {
-      display: none;
+    .fas, .fas *,
+    .overvue__settings, .overvue__settings * {
+      display: none !important;
+    }
+
+    .overvue .docsize {
+      border: 0 !important;
+      height: auto !important;
+      margin: 0 !important;
+    }
+
+    .only-print {
+      display: block;
+      margin-bottom: var(--base);
     }
 
     body {

@@ -172,7 +172,7 @@
       Badges: <input type="checkbox" v-model="uniqueBadges"/> unique?
     </div>
     <div class="overvue__settings">
-      <a href="https://i.imgur.com/DgAvt28.png">Firefox issue with no images on print & preview?</a>
+      <a href="https://i.imgur.com/DgAvt28.png" target="_blank">Firefox issue with no images on print & preview?</a>
     </div>
     <div class="only-print">
       Beaware of 100% scaling.

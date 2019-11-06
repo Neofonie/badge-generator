@@ -371,12 +371,10 @@ export default {
     onChange(type, data, index) {
       switch (type) {
         case "label":
-          const string = data;
-          this.badges[index].label.value = string;
+          this.badges[index].label.value = data;
           break;
         case "isEditMode":
-          const boolean = data;
-          this.badges[index].isEditMode = boolean;
+          this.badges[index].isEditMode = data;
           break;
       }
     },
@@ -427,7 +425,7 @@ export default {
       }
     },
 
-    triggerUpload(index) {
+    triggerUpload() {
       this.$refs.fileInput[0].click();
     },
     image(event, index) {
@@ -477,8 +475,7 @@ export default {
       this.badges[index].showClrPicker = activeType !== type ? type : "";
     },
     changeClr(event, index, type) {
-      const color = event.hex;
-      this.badges[index][type].clr = color;
+      this.badges[index][type].clr = event.hex;
     }
   }
 };

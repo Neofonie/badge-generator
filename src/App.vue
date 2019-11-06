@@ -5,73 +5,75 @@
 </template>
 
 <style lang="less">
-  body {
-    font-family: Helvetica, Verdana, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+body {
+  font-family: Helvetica, Verdana, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.only-print {
+  display: none;
+}
+
+@media print {
+  .fas,
+  .fas *,
+  .overvue__settings,
+  .overvue__settings * {
+    display: none !important;
   }
 
-  * {
-    box-sizing: border-box;
+  .overvue .docsize {
+    border: 0 !important;
+    height: auto !important;
+    margin: 0 !important;
   }
 
   .only-print {
-    display: none;
+    display: block;
+    margin-bottom: var(--base);
   }
 
-  @media print {
-    .fas, .fas *,
-    .overvue__settings, .overvue__settings * {
-      display: none !important;
-    }
-
-    .overvue .docsize {
-      border: 0 !important;
-      height: auto !important;
-      margin: 0 !important;
-    }
-
-    .only-print {
-      display: block;
-      margin-bottom: var(--base);
-    }
-
-    body {
-      -webkit-print-color-adjust: exact !important;
-      color-adjust: exact !important;
-    }
+  body {
+    -webkit-print-color-adjust: exact !important;
+    color-adjust: exact !important;
   }
+}
 
-  :root {
-    --base: 16px;
-    --base-half: calc(var(--base) / 2);
-    --base-quarter: calc(var(--base) / 4);
-    --base-double: calc(var(--base) * 2.5);
-    --font: var(--base);
-    --font-big: calc(var(--font) * 1.5);
-    --font-bigger: calc(var(--font) * 3);
-    --clr-black: #000;
-    --clr-red: #E60023;
-    --clr-grey: #ccc;
+:root {
+  --base: 16px;
+  --base-half: calc(var(--base) / 2);
+  --base-quarter: calc(var(--base) / 4);
+  --base-double: calc(var(--base) * 2.5);
+  --font: var(--base);
+  --font-big: calc(var(--font) * 1.5);
+  --font-bigger: calc(var(--font) * 3);
+  --clr-black: #000;
+  --clr-red: #e60023;
+  --clr-grey: #ccc;
+}
+
+.fas {
+  cursor: pointer;
+
+  &:hover {
+    color: var(--clr-red) !important;
+    text-shadow: 0 0 4px rgba(0, 0, 0, 0.25);
   }
-
-  .fas {
-    cursor: pointer;
-
-    &:hover {
-      color: var(--clr-red) !important;
-      text-shadow: 0 0 4px rgba(0, 0, 0, 0.25);
-    }
-  }
+}
 </style>
 
 <script>
-import Overvue from './components/Over.vue'
+import Overvue from "./components/Over.vue";
 
 export default {
-  name: 'app',
+  name: "app",
   components: {
     Overvue
   }
-}
+};
 </script>

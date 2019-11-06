@@ -32,9 +32,9 @@
 
 <script>
 // https://github.com/v-comp/v-color/blob/master/demo.js
-import ColorPicker from "../../node_modules/v-color/dist/index.esm";
+import ColorPicker from '../../node_modules/v-color/dist/index.esm';
 
-const componentName = "ClrPikr";
+const componentName = 'ClrPikr';
 export default {
   name: componentName,
   components: {
@@ -46,18 +46,18 @@ export default {
     },
     title: {
       type: String,
-      default: "choose color"
+      default: 'choose color'
     },
     type: {
       type: String
     },
     show: {
       type: String,
-      default: ""
+      default: ''
     },
     clr: {
       type: String,
-      default: "#CCCCCC"
+      default: '#CCCCCC'
     },
     onToggle: {
       type: Function

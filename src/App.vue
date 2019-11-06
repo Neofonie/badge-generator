@@ -68,10 +68,10 @@ body {
 </style>
 
 <script>
-import Overvue from "./components/Over.vue";
+import Overvue from './components/Over.vue';
 
 export default {
-  name: "app",
+  name: 'app',
   components: {
     Overvue
   }

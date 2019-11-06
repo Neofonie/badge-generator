@@ -148,7 +148,7 @@
 </template>
 
 <script>
-const componentName = "Badge";
+const componentName = 'Badge';
 export default {
   name: componentName,
   props: {
@@ -172,39 +172,39 @@ export default {
         type: Object,
         size: {
           type: String,
-          default: "small" // big | small
+          default: 'small' // big | small
         },
         clr: {
           type: String,
-          default: "#fff"
+          default: '#fff'
         },
-        default: "small" // big | small
+        default: 'small' // big | small
       },
       icon: {
         type: Object,
         base64: {
           type: String,
-          default: ""
+          default: ''
         },
         clr: {
           type: String,
-          default: "#ccc"
+          default: '#ccc'
         },
         style: {
           type: String,
-          default: "round" // square | circle | round | triangle
+          default: 'round' // square | circle | round | triangle
         },
         size: {
           type: String,
-          default: "contain"
+          default: 'contain'
         },
         x: {
           type: String,
-          default: "center"
+          default: 'center'
         },
         y: {
           type: String,
-          default: "center"
+          default: 'center'
         }
       },
       label: {
@@ -214,7 +214,7 @@ export default {
         },
         clr: {
           type: String,
-          default: "#000"
+          default: '#000'
         }
       }
     }
@@ -226,22 +226,22 @@ export default {
   },
   methods: {
     containIcon() {
-      this.data.icon.size = this.data.icon.size === "" ? "contain" : "";
+      this.data.icon.size = this.data.icon.size === '' ? 'contain' : '';
     },
     resizeIcon(event) {
       // default: iconSize: contain;
       const deltaY = event.deltaY;
       const acutalSize = parseInt(
-        this.data.icon.size === "contain" || this.data.icon.size === ""
-          ? "100%"
+        this.data.icon.size === 'contain' || this.data.icon.size === ''
+          ? '100%'
           : this.data.icon.size
       );
       // up -> bigger
       if (deltaY > 0) {
-        this.data.icon.size = acutalSize + 10 + "%";
+        this.data.icon.size = acutalSize + 10 + '%';
         // down -> smaller
       } else {
-        this.data.icon.size = acutalSize - 10 + "%";
+        this.data.icon.size = acutalSize - 10 + '%';
       }
     },
     setIconOrigin(event) {
@@ -250,42 +250,42 @@ export default {
       const direction = event.code;
       const currentPosX = this.data.icon.x;
       const currentPosY = this.data.icon.y;
-      let nextPosX = "";
-      let nextPosY = "";
+      let nextPosX = '';
+      let nextPosY = '';
 
       switch (direction) {
-        case "ArrowUp":
-          nextPosY = "top";
-          if (currentPosY === "bottom") {
-            nextPosY = "center";
+        case 'ArrowUp':
+          nextPosY = 'top';
+          if (currentPosY === 'bottom') {
+            nextPosY = 'center';
           }
           break;
-        case "ArrowDown":
-          if (currentPosY === "top") {
-            nextPosY = "center";
-          } else if (currentPosY === "center") {
-            nextPosY = "bottom";
+        case 'ArrowDown':
+          if (currentPosY === 'top') {
+            nextPosY = 'center';
+          } else if (currentPosY === 'center') {
+            nextPosY = 'bottom';
           }
           break;
-        case "ArrowRight":
-          if (currentPosX === "left") {
-            nextPosX = "center";
-          } else if (currentPosX === "center") {
-            nextPosX = "right";
+        case 'ArrowRight':
+          if (currentPosX === 'left') {
+            nextPosX = 'center';
+          } else if (currentPosX === 'center') {
+            nextPosX = 'right';
           }
           break;
-        case "ArrowLeft":
-          nextPosX = "left";
-          if (currentPosX === "right") {
-            nextPosX = "center";
+        case 'ArrowLeft':
+          nextPosX = 'left';
+          if (currentPosX === 'right') {
+            nextPosX = 'center';
           }
           break;
       }
 
-      if (nextPosX !== "") {
+      if (nextPosX !== '') {
         this.data.icon.x = nextPosX;
       }
-      if (nextPosY !== "") {
+      if (nextPosY !== '') {
         this.data.icon.y = nextPosY;
       }
     }

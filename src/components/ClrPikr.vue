@@ -13,7 +13,7 @@
 
 <template>
   <span class="clrpikr">
-    <i v-bind:title="label"
+    <i v-bind:title="title"
        class="fas fa-palette"
        v-bind:class="{
         active: show === type,
@@ -49,8 +49,8 @@ export default {
       type: String
     },
     show: {
-      type: Boolean,
-      default: false
+      type: String,
+      default: ''
     },
     clr: {
       type: String,

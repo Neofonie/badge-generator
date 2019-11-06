@@ -136,147 +136,147 @@
 </template>
 
 <script>
-  const componentName = 'Badge';
-  export default {
-    name: componentName,
-    props: {
-      index: {
-        type: Number,
-      },
-      showBorder: {
+const componentName = 'Badge'
+export default {
+  name: componentName,
+  props: {
+    index: {
+      type: Number
+    },
+    showBorder: {
+      type: Boolean,
+      default: true
+    },
+    onChange: {
+      type: Function
+    },
+    data: {
+      type: Object,
+      isEditMode: {
         type: Boolean,
-        default: true,
+        default: false
       },
-      onChange: {
-        type: Function,
-      },
-      data: {
+      badge: {
         type: Object,
-        isEditMode: {
-          type: Boolean,
-          default: false,
+        size: {
+          type: String,
+          default: 'small' // big | small
         },
-        badge: {
-          type: Object,
-          size: {
-            type: String,
-            default: 'small', // big | small
-          },
-          clr: {
-            type: String,
-            default: '#fff',
-          },
-          default: 'small', // big | small
+        clr: {
+          type: String,
+          default: '#fff'
         },
-        icon: {
-          type: Object,
-          base64: {
-            type: String,
-            default: '',
-          },
-          clr: {
-            type: String,
-            default: '#ccc',
-          },
-          style: {
-            type: String,
-            default: 'round', // square | circle | round | triangle
-          },
-          size: {
-            type: String,
-            default: 'contain',
-          },
-          x: {
-            type: String,
-            default: 'center',
-          },
-          y: {
-            type: String,
-            default: 'center',
-          },
-        },
-        label: {
-          type: Object,
-          value: {
-            type: String,
-          },
-          clr: {
-            type: String,
-            default: '#000',
-          },
-        },
+        default: 'small' // big | small
       },
-    },
-    watch: {
-      showBorder(nue) {
-        this.showBorder = nue;
-      },
-    },
-    methods: {
-      containIcon() {
-        this.data.icon.size = this.data.icon.size === '' ? 'contain' : '';
-      },
-      resizeIcon(event) {
-        // default: iconSize: contain;
-        const deltaY = event.deltaY;
-        const acutalSize = parseInt(
-          this.data.icon.size === 'contain' ||
-          this.data.icon.size === ''
-            ? '100%'
-            : this.data.icon.size);
-        // up -> bigger
-        if (deltaY > 0) {
-          this.data.icon.size = (acutalSize + 10) + '%';
-          // down -> smaller
-        } else {
-          this.data.icon.size = (acutalSize - 10) + '%';
+      icon: {
+        type: Object,
+        base64: {
+          type: String,
+          default: ''
+        },
+        clr: {
+          type: String,
+          default: '#ccc'
+        },
+        style: {
+          type: String,
+          default: 'round' // square | circle | round | triangle
+        },
+        size: {
+          type: String,
+          default: 'contain'
+        },
+        x: {
+          type: String,
+          default: 'center'
+        },
+        y: {
+          type: String,
+          default: 'center'
         }
       },
-      setIconOrigin(event) {
-        // top - center - bottom
-        // default: backgroundPosition: top center;
-        const direction = event.code;
-        const currentPosX = this.data.icon.x;
-        const currentPosY = this.data.icon.y;
-        let nextPosX = '';
-        let nextPosY = '';
-
-        switch (direction) {
-          case 'ArrowUp':
-            nextPosY = 'top';
-            if (currentPosY === 'bottom') {
-              nextPosY = 'center';
-            }
-            break;
-          case 'ArrowDown':
-            if (currentPosY === 'top') {
-              nextPosY = 'center';
-            } else if (currentPosY === 'center') {
-              nextPosY = 'bottom';
-            }
-            break;
-          case 'ArrowRight':
-            if (currentPosX === 'left') {
-              nextPosX = 'center';
-            } else if (currentPosX === 'center') {
-              nextPosX = 'right';
-            }
-            break;
-          case 'ArrowLeft':
-            nextPosX = 'left';
-            if (currentPosX === 'right') {
-              nextPosX = 'center';
-            }
-            break;
-        }
-
-        if (nextPosX !== '') {
-          this.data.icon.x = nextPosX;
-        }
-        if (nextPosY !== '') {
-          this.data.icon.y = nextPosY;
+      label: {
+        type: Object,
+        value: {
+          type: String
+        },
+        clr: {
+          type: String,
+          default: '#000'
         }
       }
     }
+  },
+  watch: {
+    showBorder (nue) {
+      this.showBorder = nue
+    }
+  },
+  methods: {
+    containIcon () {
+      this.data.icon.size = this.data.icon.size === '' ? 'contain' : ''
+    },
+    resizeIcon (event) {
+      // default: iconSize: contain;
+      const deltaY = event.deltaY
+      const acutalSize = parseInt(
+        this.data.icon.size === 'contain' ||
+          this.data.icon.size === ''
+          ? '100%'
+          : this.data.icon.size)
+      // up -> bigger
+      if (deltaY > 0) {
+        this.data.icon.size = (acutalSize + 10) + '%'
+        // down -> smaller
+      } else {
+        this.data.icon.size = (acutalSize - 10) + '%'
+      }
+    },
+    setIconOrigin (event) {
+      // top - center - bottom
+      // default: backgroundPosition: top center;
+      const direction = event.code
+      const currentPosX = this.data.icon.x
+      const currentPosY = this.data.icon.y
+      let nextPosX = ''
+      let nextPosY = ''
+
+      switch (direction) {
+        case 'ArrowUp':
+          nextPosY = 'top'
+          if (currentPosY === 'bottom') {
+            nextPosY = 'center'
+          }
+          break
+        case 'ArrowDown':
+          if (currentPosY === 'top') {
+            nextPosY = 'center'
+          } else if (currentPosY === 'center') {
+            nextPosY = 'bottom'
+          }
+          break
+        case 'ArrowRight':
+          if (currentPosX === 'left') {
+            nextPosX = 'center'
+          } else if (currentPosX === 'center') {
+            nextPosX = 'right'
+          }
+          break
+        case 'ArrowLeft':
+          nextPosX = 'left'
+          if (currentPosX === 'right') {
+            nextPosX = 'center'
+          }
+          break
+      }
+
+      if (nextPosX !== '') {
+        this.data.icon.x = nextPosX
+      }
+      if (nextPosY !== '') {
+        this.data.icon.y = nextPosY
+      }
+    }
   }
+}
 </script>

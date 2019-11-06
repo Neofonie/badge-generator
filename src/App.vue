@@ -14,7 +14,7 @@
   * {
     box-sizing: border-box;
   }
-  
+
   .only-print {
     display: none;
   }
@@ -66,12 +66,12 @@
 </style>
 
 <script>
-  import Overvue from './components/Over.vue'
+import Overvue from './components/Over.vue'
 
-  export default {
-    name: 'app',
-    components: {
-      Overvue,
-    },
+export default {
+  name: 'app',
+  components: {
+    Overvue
   }
+}
 </script>

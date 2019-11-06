@@ -28,40 +28,40 @@
 </template>
 
 <script>
-  // https://github.com/v-comp/v-color/blob/master/demo.js
-  import ColorPicker from '../../node_modules/v-color/dist/index.esm';
+// https://github.com/v-comp/v-color/blob/master/demo.js
+import ColorPicker from '../../node_modules/v-color/dist/index.esm'
 
-  const componentName = 'ClrPikr';
-  export default {
-    name: componentName,
-    components: {
-      ColorPicker,
+const componentName = 'ClrPikr'
+export default {
+  name: componentName,
+  components: {
+    ColorPicker
+  },
+  props: {
+    badgeKey: {
+      type: Number
     },
-    props: {
-      badgeKey: {
-        type: Number,
-      },
-      title: {
-        type: String,
-        default: 'choose color',
-      },
-      type: {
-        type: String,
-      },
-      show: {
-        type: Boolean,
-        default: false,
-      },
-      clr: {
-        type: String,
-        default: '#CCCCCC',
-      },
-      onToggle: {
-        type: Function,
-      },
-      onChange: {
-        type: Function,
-      }
+    title: {
+      type: String,
+      default: 'choose color'
+    },
+    type: {
+      type: String
+    },
+    show: {
+      type: Boolean,
+      default: false
+    },
+    clr: {
+      type: String,
+      default: '#CCCCCC'
+    },
+    onToggle: {
+      type: Function
+    },
+    onChange: {
+      type: Function
     }
   }
+}
 </script>

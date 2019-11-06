@@ -60,7 +60,7 @@
 
     &:hover {
       color: var(--clr-red) !important;
-      text-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+      text-shadow: 0 0 4px rgba(0, 0, 0, 0.25);
     }
   }
 </style>

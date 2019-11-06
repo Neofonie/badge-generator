@@ -155,14 +155,14 @@
       Docsize:
       <select v-model="docsize">
         <option>Bitte wählen</option>
-        <option v-for="label in defaults.docsizes">{{label}}</option>
+        <option v-for="(label, index) in defaults.docsizes" :key="index">{{label}}</option>
       </select>
     </span>
     <span class="overvue__settings">
       Format:
       <select v-model="docsizeFormat">
         <option>Bitte wählen</option>
-        <option v-for="label in defaults.docsizeFormats">{{label}}</option>
+        <option v-for="(label, index) in defaults.docsizeFormats" :key="index">{{label}}</option>
       </select>
     </span>
     <span class="overvue__settings">
@@ -172,14 +172,14 @@
       Badges: <input type="checkbox" v-model="uniqueBadges"/> unique?
     </div>
     <div class="only-print">
-      Beaware of 100% scaling.
+      Be aware of 100% scaling.
     </div>
     <div v-bind:class="[
         'overvue__badges',
         `docsize docsize--${docsize}${docsizeFormat === 'landscape' ? '--' + docsizeFormat : ''}`,
       ]">
       <div class="overvue__badge"
-           v-for="(data, key) in badges">
+           v-for="(data, key) in badges" :key="key">
 
         <div class="overvue__badge__wrap"
              v-on:mouseover="toggleEdit(key, true)"

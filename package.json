@@ -5,9 +5,12 @@
   "author": "Willy Woitas <willy.woitas@neofonie.de>",
   "private": true,
   "scripts": {
+    "--- VUE CLI DEFAULT SCRIPTS ---": "",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "--- WILLYS CUSTOM SCRIPTS -----": "",
+    "npmInstall": "npm install"
   },
   "dependencies": {
     "core-js": "^3.3.6",

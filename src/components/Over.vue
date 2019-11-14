@@ -151,31 +151,35 @@
 
 <template>
   <div class="overvue">
-    <span class="overvue__settings">
-      Docsize:
-      <select v-model="docsize">
-        <option>Bitte wählen</option>
-        <option v-for="(label, index) in defaults.docsizes" :key="index">{{
-          label
-        }}</option>
-      </select>
-    </span>
-    <span class="overvue__settings">
-      Format:
-      <select v-model="docsizeFormat">
-        <option>Bitte wählen</option>
-        <option
-          v-for="(label, index) in defaults.docsizeFormats"
-          :key="index"
-          >{{ label }}</option
-        >
-      </select>
-    </span>
-    <span class="overvue__settings">
-      Border: <input type="checkbox" v-model="showBorder" />
-    </span>
-    <div class="overvue__settings">
-      Badges: <input type="checkbox" v-model="uniqueBadges" /> unique?
+    <div class="flex justify-around p-2">
+      <span class="overvue__settings">
+        Docsize:
+        <select v-model="docsize">
+          <option>Bitte wählen</option>
+          <option v-for="(label, index) in defaults.docsizes" :key="index">{{
+            label
+          }}</option>
+        </select>
+      </span>
+      <span class="overvue__settings">
+        Format:
+        <select v-model="docsizeFormat">
+          <option>Bitte wählen</option>
+          <option
+            v-for="(label, index) in defaults.docsizeFormats"
+            :key="index"
+            >{{ label }}</option
+          >
+        </select>
+      </span>
+      <span class="overvue__settings">
+        Border:
+        <input type="checkbox" v-model="showBorder" /> visible?
+      </span>
+      <span class="overvue__settings">
+        Badges:
+        <input type="checkbox" v-model="uniqueBadges" /> unique?
+      </span>
     </div>
     <div class="only-print">
       Be aware of 100% scaling.

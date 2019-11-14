@@ -180,6 +180,7 @@
         Badges:
         <input type="checkbox" v-model="uniqueBadges" /> unique?
       </span>
+      <button class="bg-red-600 hover:bg-red-700 text-white uppercase p-2 m-4 rounded">Print</button>
     </div>
     <div class="only-print">
       Be aware of 100% scaling.

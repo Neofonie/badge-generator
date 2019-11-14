@@ -151,7 +151,7 @@
 
 <template>
   <div class="overvue">
-    <div class="flex justify-around p-2">
+    <div class="flex flex-col sm:flex-row justify-around p-2">
       <span class="overvue__settings">
         Docsize:
         <select v-model="docsize">

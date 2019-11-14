@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <h1 class="text-center">Neofonie Badge Generator</h1>
     <Overvue></Overvue>
   </div>
 </template>

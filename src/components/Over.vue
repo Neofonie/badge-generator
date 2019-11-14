@@ -151,7 +151,7 @@
 
 <template>
   <div class="overvue">
-    <div class="flex flex-col sm:flex-row justify-around p-2">
+    <div class="flex flex-col sm:flex-row justify-around p-2 print:hidden">
       <span class="overvue__settings">
         Docsize:
         <select v-model="docsize">
@@ -180,9 +180,9 @@
         Badges:
         <input type="checkbox" v-model="uniqueBadges" /> unique?
       </span>
-      <button class="bg-red-600 hover:bg-red-700 text-white uppercase p-2 m-4 rounded">Print</button>
+      <Button label="Print"  v-bind:onClick="printView"/>
     </div>
-    <div class="only-print">
+    <div class="hidden print:block">
       Be aware of 100% scaling.
     </div>
     <div
@@ -306,6 +306,7 @@
 <script>
 import ClrPikr from './ClrPikr.vue';
 import Badge from './Badge.vue';
+import Button from './Button';
 
 function copy(o) {
   // copy object or array
@@ -326,6 +327,7 @@ function copy(o) {
 export default {
   name: 'Overvue',
   components: {
+    Button,
     Badge,
     ClrPikr
   },
@@ -429,7 +431,9 @@ export default {
         this.badges[index].showClrPicker = '';
       }
     },
-
+    printView() {
+      window.print();
+    },
     triggerUpload() {
       this.$refs.fileInput[0].click();
     },

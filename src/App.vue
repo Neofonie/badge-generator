@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <h1 class="text-center">Neofonie Badge Generator</h1>
+    <h1 class="text-center print:hidden">Neofonie Badge Generator</h1>
     <Overvue></Overvue>
   </div>
 </template>
@@ -16,10 +16,6 @@ body {
   box-sizing: border-box;
 }
 
-.only-print {
-  display: none;
-}
-
 @media print {
   .fas,
   .fas *,
@@ -32,11 +28,6 @@ body {
     border: 0 !important;
     height: auto !important;
     margin: 0 !important;
-  }
-
-  .only-print {
-    display: block;
-    margin-bottom: var(--base);
   }
 
   body {

@@ -5,6 +5,9 @@
   "author": "Willy Woitas <willy.woitas@neofonie.de>",
   "private": true,
   "scripts": {
+    "--- NPM SCRIPTS -------------- ": "",
+    "start": "vue-cli-service serve",
+    "test": "echo 'No tests specified'; exit 0;",
     "--- VUE CLI DEFAULT SCRIPTS ---": "",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",

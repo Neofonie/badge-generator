@@ -150,20 +150,20 @@
 </style>
 
 <template>
-  <div class="overvue">
+  <div class="overvue container mx-auto">
     <div class="flex flex-col sm:flex-row justify-around p-2 print:hidden">
-      <span class="overvue__settings">
+      <span class="overvue__settings mb-1">
         Docsize:
-        <select v-model="docsize">
+        <select class="neo-select" v-model="docsize">
           <option>Bitte wählen</option>
           <option v-for="(label, index) in defaults.docsizes" :key="index">{{
             label
           }}</option>
         </select>
       </span>
-      <span class="overvue__settings">
+      <span class="overvue__settings mb-1">
         Format:
-        <select v-model="docsizeFormat">
+        <select class="neo-select" v-model="docsizeFormat">
           <option>Bitte wählen</option>
           <option
             v-for="(label, index) in defaults.docsizeFormats"
@@ -172,11 +172,11 @@
           >
         </select>
       </span>
-      <span class="overvue__settings">
+      <span class="overvue__settings mb-1">
         Border:
         <input type="checkbox" v-model="showBorder" /> visible?
       </span>
-      <span class="overvue__settings">
+      <span class="overvue__settings mb-1">
         Badges:
         <input type="checkbox" v-model="uniqueBadges" /> unique?
       </span>
@@ -188,6 +188,7 @@
     <div
       v-bind:class="[
         'overvue__badges',
+        'mx-auto',
         `docsize docsize--${docsize}${
           docsizeFormat === 'landscape' ? '--' + docsizeFormat : ''
         }`

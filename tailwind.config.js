@@ -33,11 +33,13 @@ module.exports = {
         body: {
           color: config("theme.colors.neo-black"),
           fontFamily: config("theme.fontFamily.neo"),
-          fontSize: config("theme.fontSize.base")
+          fontSize: config("theme.fontSize.base"),
+          lineHeight: config("theme.lineHeight.none")
         },
         h1: {
           color: config("theme.colors.neo-red"),
-          fontSize: config("theme.fontSize.6xl")
+          fontSize: config("theme.fontSize.6xl"),
+          lineHeight: config("theme.lineHeight.tight")
         },
         h2: {
           color: config("theme.colors.neo-red"),
@@ -63,6 +65,40 @@ module.exports = {
         },
         button: {
           fontSize: config("theme.fontSize.xl")
+        },
+        select: {
+          fontSize: config("theme.fontSize.xl")
+        }
+      });
+    },
+    function({ addComponents, config }) {
+      addComponents({
+        '.neo-btn': {
+          padding: `${config("theme.spacing.1")} ${config("theme.spacing.3")}` ,
+          borderRadius: config("theme.borderRadius.default"),
+          height: config("theme.spacing.10")
+        },
+        '.neo-btn--blue': {
+          backgroundColor: config("theme.colors.neo-blue"),
+          color: config("theme.colors.white"),
+          '&:hover': {
+            backgroundColor: config("theme.colors.blue.700")
+          }
+        },
+        '.neo-btn--red': {
+          backgroundColor: config("theme.colors.neo-red"),
+          color: config("theme.colors.white"),
+          '&:hover': {
+            backgroundColor: config("theme.colors.red.700")
+          }
+        },
+        '.neo-select': {
+          backgroundColor: config("theme.colors.gray.200"),
+          borderColor: config("theme.colors.neo-grey"),
+          borderRadius: config("theme.borderRadius.default"),
+          borderWidth: config("theme.borderWidth.default"),
+          padding: `${config("theme.spacing.1")} ${config("theme.spacing.2")}`,
+          height: config("theme.spacing.10")
         }
       });
     }

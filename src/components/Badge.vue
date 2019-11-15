@@ -231,17 +231,17 @@ export default {
     resizeIcon(event) {
       // default: iconSize: contain;
       const deltaY = event.deltaY;
-      const acutalSize = parseInt(
+      const actualSize = parseInt(
         this.data.icon.size === 'contain' || this.data.icon.size === ''
           ? '100%'
           : this.data.icon.size
       );
       // up -> bigger
       if (deltaY > 0) {
-        this.data.icon.size = acutalSize + 10 + '%';
+        this.data.icon.size = actualSize + 10 + '%';
         // down -> smaller
       } else {
-        this.data.icon.size = acutalSize - 10 + '%';
+        this.data.icon.size = actualSize - 10 + '%';
       }
     },
     setIconOrigin(event) {

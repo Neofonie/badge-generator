@@ -151,8 +151,8 @@
 
 <template>
   <div class="overvue container mx-auto">
-    <div class="flex flex-col sm:flex-row justify-around p-2 print:hidden">
-      <span class="overvue__settings mb-1">
+    <div class="flex flex-row flex-wrap justify-around p-2 print:hidden">
+      <span class="overvue__settings mb-1 w-1/2 md:w-1/4">
         Docsize:
         <select class="neo-select" v-model="docsize">
           <option>Bitte wählen</option>
@@ -161,7 +161,7 @@
           }}</option>
         </select>
       </span>
-      <span class="overvue__settings mb-1">
+      <span class="overvue__settings mb-1 w-1/2 md:w-1/4">
         Format:
         <select class="neo-select" v-model="docsizeFormat">
           <option>Bitte wählen</option>
@@ -172,15 +172,15 @@
           >
         </select>
       </span>
-      <span class="overvue__settings mb-1">
+      <span class="overvue__settings mb-1 w-1/2 md:w-1/4">
         Border:
         <input type="checkbox" v-model="showBorder" /> visible?
       </span>
-      <span class="overvue__settings mb-1">
+      <span class="overvue__settings mb-1 w-1/2 md:w-1/4">
         Badges:
         <input type="checkbox" v-model="uniqueBadges" /> unique?
       </span>
-      <Button label="Print"  v-bind:onClick="printView"/>
+      <Button label="Print" v-bind:onClick="printView"/>
     </div>
     <div class="hidden print:block">
       Be aware of 100% scaling.

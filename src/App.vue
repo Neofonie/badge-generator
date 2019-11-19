@@ -17,13 +17,6 @@ body {
 }
 
 @media print {
-  .fas,
-  .fas *,
-  .overvue__settings,
-  .overvue__settings * {
-    display: none !important;
-  }
-
   .overvue .docsize {
     border: 0 !important;
     height: auto !important;

@@ -152,16 +152,16 @@
 <template>
   <div class="overvue container mx-auto">
     <div class="flex flex-row flex-wrap justify-around p-2 print:hidden">
-      <span class="overvue__settings mb-1 w-1/2 md:w-1/4">
+      <label class="overvue__settings mb-1 w-1/2 md:w-1/4">
         Docsize:
         <select class="neo-select" v-model="docsize">
           <option>Bitte wählen</option>
-          <option v-for="(label, index) in defaults.docsizes" :key="index">{{
-            label
-          }}</option>
+          <option v-for="(label, index) in defaults.docsizes" :key="index">
+            {{ label }}
+          </option>
         </select>
-      </span>
-      <span class="overvue__settings mb-1 w-1/2 md:w-1/4">
+      </label>
+      <label class="overvue__settings mb-1 w-1/2 md:w-1/4">
         Format:
         <select class="neo-select" v-model="docsizeFormat">
           <option>Bitte wählen</option>
@@ -171,15 +171,15 @@
             >{{ label }}</option
           >
         </select>
-      </span>
-      <span class="overvue__settings mb-1 w-1/2 md:w-1/4">
+      </label>
+      <label class="overvue__settings mb-1 w-1/2 md:w-1/4">
         Border:
         <input type="checkbox" v-model="showBorder" /> visible?
-      </span>
-      <span class="overvue__settings mb-1 w-1/2 md:w-1/4">
+      </label>
+      <label class="overvue__settings mb-1 w-1/2 md:w-1/4">
         Badges:
         <input type="checkbox" v-model="uniqueBadges" /> unique?
-      </span>
+      </label>
       <Button label="Print" v-bind:onClick="printView" />
     </div>
     <div class="hidden print:block">
@@ -204,11 +204,11 @@
             <i
               class="overvue__badge__duplicate-btn fas fa-plus-circle"
               v-on:click="duplicate(key)"
-            ></i>
+            />
             <i
               class="overvue__badge__remove-btn fas fa-times-circle"
               v-on:click="remove(key)"
-            ></i>
+            />
           </span>
 
           <span class="overvue__badge__edit-bar">
@@ -217,7 +217,7 @@
               v-bind:class="{
                 active: data.isEditMode
               }"
-            ></i>
+            />
             <span class="overvue__badge__sub-bar" v-if="data.isEditMode">
               <i
                 title="badge size"
@@ -227,7 +227,7 @@
                   'fa-search-plus': data.badge.size === 'small'
                 }"
                 v-on:click="badgeStyle(key)"
-              ></i>
+              />
               <ClrPikr
                 title="choose badge background color"
                 type="badge"
@@ -245,7 +245,7 @@
                   title="upload icon"
                   class="overvue__badge__sub-bar__icon-upload fas fa-image"
                   v-on:click="triggerUpload(key)"
-                ></i>
+                />
                 <input
                   type="file"
                   accept="image/*"
@@ -262,7 +262,7 @@
                     `fa-${faClassName(data.icon.style)}`
                   ]"
                   v-on:click="iconStyle(key)"
-                ></i>
+                />
               </span>
               <ClrPikr
                 title="choose icon background color"
@@ -293,13 +293,13 @@
             v-bind:showBorder="showBorder"
             v-bind:onChange="onChange"
             v-bind:data="data"
-          ></Badge>
+          />
         </div>
       </div>
       <i
         class="overvue__badges__add-button fas fa-plus-circle"
         v-on:click="add()"
-      ></i>
+      />
     </div>
   </div>
 </template>

@@ -21,12 +21,12 @@
       }"
       v-bind:style="{ color: clr }"
       v-on:click="onToggle(badgeKey, type)"
-    ></i>
+    />
     <color-picker
       v-if="show === type"
       v-bind:color="clr"
       v-on:change="onChange($event, badgeKey, type)"
-    ></color-picker>
+    />
   </span>
 </template>
 

@@ -3,10 +3,6 @@
 
 @selector: .overvue;
 @{selector} {
-  &__settings {
-    display: block;
-  }
-
   &__badges {
     display: flex;
     width: 100%;
@@ -150,39 +146,47 @@
 </style>
 
 <template>
-  <div class="overvue">
-    <span class="overvue__settings">
-      Docsize:
-      <select v-model="docsize">
-        <option>Bitte wählen</option>
-        <option v-for="(label, index) in defaults.docsizes" :key="index">{{
-          label
-        }}</option>
-      </select>
-    </span>
-    <span class="overvue__settings">
-      Format:
-      <select v-model="docsizeFormat">
-        <option>Bitte wählen</option>
-        <option
-          v-for="(label, index) in defaults.docsizeFormats"
-          :key="index"
-          >{{ label }}</option
-        >
-      </select>
-    </span>
-    <span class="overvue__settings">
-      Border: <input type="checkbox" v-model="showBorder" />
-    </span>
-    <div class="overvue__settings">
-      Badges: <input type="checkbox" v-model="uniqueBadges" /> unique?
+  <div class="overvue container mx-auto">
+    <div class="flex flex-row flex-wrap justify-around p-2 print:hidden">
+      <label class="mb-1 w-1/2 md:w-1/4">
+        Docsize:
+        <select class="neo-select" v-model="docsize">
+          <option>Bitte wählen</option>
+          <option v-for="(label, index) in defaults.docsizes" :key="index">
+            {{ label }}
+          </option>
+        </select>
+      </label>
+      <label class="mb-1 w-1/2 md:w-1/4">
+        Format:
+        <select class="neo-select" v-model="docsizeFormat">
+          <option>Bitte wählen</option>
+          <option
+            v-for="(label, index) in defaults.docsizeFormats"
+            :key="index"
+            >{{ label }}</option
+          >
+        </select>
+      </label>
+      <Checkbox
+        class="mb-1 w-1/2 md:w-1/4"
+        label="Border visible"
+        v-model="showBorder"
+      />
+      <Checkbox
+        class="mb-1 w-1/2 md:w-1/4"
+        label="Badges unique"
+        v-model="uniqueBadges"
+      />
+      <Button label="Print" v-bind:onClick="printView" />
     </div>
-    <div class="only-print">
+    <div class="hidden print:block">
       Be aware of 100% scaling.
     </div>
     <div
       v-bind:class="[
         'overvue__badges',
+        'mx-auto',
         `docsize docsize--${docsize}${
           docsizeFormat === 'landscape' ? '--' + docsizeFormat : ''
         }`
@@ -198,11 +202,11 @@
             <i
               class="overvue__badge__duplicate-btn fas fa-plus-circle"
               v-on:click="duplicate(key)"
-            ></i>
+            />
             <i
               class="overvue__badge__remove-btn fas fa-times-circle"
               v-on:click="remove(key)"
-            ></i>
+            />
           </span>
 
           <span class="overvue__badge__edit-bar">
@@ -211,7 +215,7 @@
               v-bind:class="{
                 active: data.isEditMode
               }"
-            ></i>
+            />
             <span class="overvue__badge__sub-bar" v-if="data.isEditMode">
               <i
                 title="badge size"
@@ -221,7 +225,7 @@
                   'fa-search-plus': data.badge.size === 'small'
                 }"
                 v-on:click="badgeStyle(key)"
-              ></i>
+              />
               <ClrPikr
                 title="choose badge background color"
                 type="badge"
@@ -239,7 +243,7 @@
                   title="upload icon"
                   class="overvue__badge__sub-bar__icon-upload fas fa-image"
                   v-on:click="triggerUpload(key)"
-                ></i>
+                />
                 <input
                   type="file"
                   accept="image/*"
@@ -256,7 +260,7 @@
                     `fa-${faClassName(data.icon.style)}`
                   ]"
                   v-on:click="iconStyle(key)"
-                ></i>
+                />
               </span>
               <ClrPikr
                 title="choose icon background color"
@@ -287,13 +291,13 @@
             v-bind:showBorder="showBorder"
             v-bind:onChange="onChange"
             v-bind:data="data"
-          ></Badge>
+          />
         </div>
       </div>
       <i
         class="overvue__badges__add-button fas fa-plus-circle"
         v-on:click="add()"
-      ></i>
+      />
     </div>
   </div>
 </template>
@@ -301,6 +305,8 @@
 <script>
 import ClrPikr from './ClrPikr.vue';
 import Badge from './Badge.vue';
+import Button from './Button';
+import Checkbox from './Checkbox';
 
 function copy(o) {
   // copy object or array
@@ -321,6 +327,8 @@ function copy(o) {
 export default {
   name: 'Overvue',
   components: {
+    Checkbox,
+    Button,
     Badge,
     ClrPikr
   },
@@ -424,7 +432,9 @@ export default {
         this.badges[index].showClrPicker = '';
       }
     },
-
+    printView() {
+      window.print();
+    },
     triggerUpload() {
       this.$refs.fileInput[0].click();
     },

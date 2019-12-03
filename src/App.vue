@@ -1,8 +1,20 @@
 <template>
   <div id="app">
-    <Overvue></Overvue>
+    <h1 class="text-center print:hidden">Neofonie Badge Generator</h1>
+    <Overvue />
   </div>
 </template>
+
+<script>
+import Overvue from './components/Over.vue';
+
+export default {
+  name: 'app',
+  components: {
+    Overvue
+  }
+};
+</script>
 
 <style lang="less">
 body {
@@ -15,27 +27,11 @@ body {
   box-sizing: border-box;
 }
 
-.only-print {
-  display: none;
-}
-
 @media print {
-  .fas,
-  .fas *,
-  .overvue__settings,
-  .overvue__settings * {
-    display: none !important;
-  }
-
   .overvue .docsize {
     border: 0 !important;
     height: auto !important;
     margin: 0 !important;
-  }
-
-  .only-print {
-    display: block;
-    margin-bottom: var(--base);
   }
 
   body {
@@ -66,14 +62,3 @@ body {
   }
 }
 </style>
-
-<script>
-import Overvue from './components/Over.vue';
-
-export default {
-  name: 'app',
-  components: {
-    Overvue
-  }
-};
-</script>

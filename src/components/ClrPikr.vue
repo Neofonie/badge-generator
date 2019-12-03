@@ -1,16 +1,3 @@
-<style lang="less">
-@selector: .clrpikr;
-@{selector} {
-  position: relative;
-
-  .cp__wrapper {
-    position: absolute;
-    z-index: 1;
-    left: 1px;
-  }
-}
-</style>
-
 <template>
   <span class="clrpikr">
     <i
@@ -21,12 +8,12 @@
       }"
       v-bind:style="{ color: clr }"
       v-on:click="onToggle(badgeKey, type)"
-    ></i>
+    />
     <color-picker
       v-if="show === type"
       v-bind:color="clr"
       v-on:change="onChange($event, badgeKey, type)"
-    ></color-picker>
+    />
   </span>
 </template>
 
@@ -68,3 +55,15 @@ export default {
   }
 };
 </script>
+
+<style lang="less">
+.clrpikr {
+  position: relative;
+
+  .cp__wrapper {
+    position: absolute;
+    z-index: 1;
+    left: 1px;
+  }
+}
+</style>

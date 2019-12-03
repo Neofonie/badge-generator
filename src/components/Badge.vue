@@ -131,9 +131,13 @@
       ></div>
     </div>
     <div class="badge__label">
-      <span v-bind:style="{ color: data.label.clr }" v-if="!data.isEditMode">{{
-        data.label.value
-      }}</span>
+      <label
+        v-bind:style="{ color: data.label.clr }"
+        v-if="!data.isEditMode"
+        for="badge__label__input"
+      >
+        {{ data.label.value }}
+      </label>
       <input
         v-if="data.isEditMode"
         v-bind:value="data.label.value"
@@ -141,6 +145,7 @@
         v-on:input="onChange('label', $event.target.value, index)"
         @keyup.enter="onChange('isEditMode', false, index)"
         type="text"
+        id="badge__label__input"
         class="badge__label__input"
       />
     </div>

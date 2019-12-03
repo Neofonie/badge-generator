@@ -1,16 +1,3 @@
-<style lang="less">
-@selector: .clrpikr;
-@{selector} {
-  position: relative;
-
-  .cp__wrapper {
-    position: absolute;
-    z-index: 1;
-    left: 1px;
-  }
-}
-</style>
-
 <template>
   <span class="clrpikr">
     <i
@@ -68,3 +55,15 @@ export default {
   }
 };
 </script>
+
+<style lang="less">
+.clrpikr {
+  position: relative;
+
+  .cp__wrapper {
+    position: absolute;
+    z-index: 1;
+    left: 1px;
+  }
+}
+</style>

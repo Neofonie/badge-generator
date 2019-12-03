@@ -99,6 +99,9 @@ module.exports = {
           borderWidth: config('theme.borderWidth.default'),
           padding: `${config('theme.spacing.1')} ${config('theme.spacing.2')}`,
           height: config('theme.spacing.10')
+        },
+        '.neo-checkbox': {
+          height: config('theme.spacing.10')
         }
       });
     }

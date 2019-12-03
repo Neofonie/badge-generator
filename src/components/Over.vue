@@ -3,10 +3,6 @@
 
 @selector: .overvue;
 @{selector} {
-  &__settings {
-    display: block;
-  }
-
   &__badges {
     display: flex;
     width: 100%;
@@ -152,7 +148,7 @@
 <template>
   <div class="overvue container mx-auto">
     <div class="flex flex-row flex-wrap justify-around p-2 print:hidden">
-      <label class="overvue__settings mb-1 w-1/2 md:w-1/4">
+      <label class="mb-1 w-1/2 md:w-1/4">
         Docsize:
         <select class="neo-select" v-model="docsize">
           <option>Bitte wählen</option>
@@ -161,7 +157,7 @@
           </option>
         </select>
       </label>
-      <label class="overvue__settings mb-1 w-1/2 md:w-1/4">
+      <label class="mb-1 w-1/2 md:w-1/4">
         Format:
         <select class="neo-select" v-model="docsizeFormat">
           <option>Bitte wählen</option>
@@ -172,8 +168,16 @@
           >
         </select>
       </label>
-      <Checkbox label="Border visible" v-model="showBorder" />
-      <Checkbox label="Badges unique" v-model="uniqueBadges" />
+      <Checkbox
+        class="mb-1 w-1/2 md:w-1/4"
+        label="Border visible"
+        v-model="showBorder"
+      />
+      <Checkbox
+        class="mb-1 w-1/2 md:w-1/4"
+        label="Badges unique"
+        v-model="uniqueBadges"
+      />
       <Button label="Print" v-bind:onClick="printView" />
     </div>
     <div class="hidden print:block">

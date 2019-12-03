@@ -172,14 +172,8 @@
           >
         </select>
       </label>
-      <label class="overvue__settings mb-1 w-1/2 md:w-1/4">
-        Border:
-        <input type="checkbox" v-model="showBorder" /> visible?
-      </label>
-      <label class="overvue__settings mb-1 w-1/2 md:w-1/4">
-        Badges:
-        <input type="checkbox" v-model="uniqueBadges" /> unique?
-      </label>
+      <Checkbox label="Border visible" v-model="showBorder" />
+      <Checkbox label="Badges unique" v-model="uniqueBadges" />
       <Button label="Print" v-bind:onClick="printView" />
     </div>
     <div class="hidden print:block">
@@ -308,6 +302,7 @@
 import ClrPikr from './ClrPikr.vue';
 import Badge from './Badge.vue';
 import Button from './Button';
+import Checkbox from './Checkbox';
 
 function copy(o) {
   // copy object or array
@@ -328,6 +323,7 @@ function copy(o) {
 export default {
   name: 'Overvue',
   components: {
+    Checkbox,
     Button,
     Badge,
     ClrPikr

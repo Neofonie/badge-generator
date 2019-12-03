@@ -180,7 +180,7 @@
         Badges:
         <input type="checkbox" v-model="uniqueBadges" /> unique?
       </span>
-      <Button label="Print" v-bind:onClick="printView"/>
+      <Button label="Print" v-bind:onClick="printView" />
     </div>
     <div class="hidden print:block">
       Be aware of 100% scaling.

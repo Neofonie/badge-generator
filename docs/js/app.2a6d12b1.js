@@ -282,7 +282,7 @@
                         [
                           n('i', {
                             staticClass:
-                              'overvue__badge__duplicate-btn fas fa-plus-circle',
+                              'overvue__badge__duplicate-btn fas fa-plus-circle print:hidden',
                             on: {
                               click: function(t) {
                                 return e.duplicate(a);

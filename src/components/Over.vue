@@ -295,7 +295,7 @@
         </div>
       </div>
       <i
-        class="overvue__badges__add-button fas fa-plus-circle"
+        class="overvue__badges__add-button fas fa-plus-circle print:hidden"
         v-on:click="add()"
       />
     </div>

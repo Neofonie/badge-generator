@@ -7,6 +7,6 @@
 <script>
 export default {
   name: 'Button',
-  props: ['label', 'onClick']
+  props: ['label', 'onClick'],
 };
 </script>

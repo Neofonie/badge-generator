@@ -15,10 +15,10 @@ export default {
   name: 'Checkbox',
 
   model: {
-    event: 'change'
+    event: 'change',
   },
 
-  props: ['label', 'value']
+  props: ['label', 'value'],
 };
 </script>
 

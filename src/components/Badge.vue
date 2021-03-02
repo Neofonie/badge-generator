@@ -104,7 +104,7 @@
     v-bind:class="[
       'badge',
       `badge--${data.badge.size}`,
-      !showBorder ? 'badge--without-border' : ''
+      !showBorder ? 'badge--without-border' : '',
     ]"
     v-bind:style="{ backgroundColor: data.badge.clr }"
   >
@@ -122,11 +122,11 @@
           backgroundColor: data.icon.clr,
           backgroundImage: `url(${data.icon.base64})`,
           backgroundSize: data.icon.size,
-          backgroundPosition: `${data.icon.x} ${data.icon.y}`
+          backgroundPosition: `${data.icon.x} ${data.icon.y}`,
         }"
         v-bind:class="[
           'badge__icon__img',
-          `badge__icon__img--${data.icon.style}`
+          `badge__icon__img--${data.icon.style}`,
         ]"
       ></div>
     </div>
@@ -158,103 +158,103 @@ export default {
   name: componentName,
   props: {
     index: {
-      type: Number
+      type: Number,
     },
     showBorder: {
       type: Boolean,
-      default: true
+      default: true,
     },
     onChange: {
-      type: Function
+      type: Function,
     },
     data: {
       type: Object,
       isEditMode: {
         type: Boolean,
-        default: false
+        default: false,
       },
       badge: {
         type: Object,
         size: {
           type: String,
-          default: 'small' // big | small
+          default: 'small', // big | small
         },
         clr: {
           type: String,
-          default: '#fff'
+          default: '#fff',
         },
-        default: 'small' // big | small
+        default: 'small', // big | small
       },
       icon: {
         type: Object,
         base64: {
           type: String,
-          default: ''
+          default: '',
         },
         clr: {
           type: String,
-          default: '#ccc'
+          default: '#ccc',
         },
         style: {
           type: String,
-          default: 'round' // square | circle | round | triangle
+          default: 'round', // square | circle | round | triangle
         },
         size: {
           type: String,
-          default: 'contain'
+          default: 'contain',
         },
         x: {
           type: String,
-          default: 'center'
+          default: 'center',
         },
         y: {
           type: String,
-          default: 'center'
-        }
+          default: 'center',
+        },
       },
       label: {
         type: Object,
         value: {
-          type: String
+          type: String,
         },
         clr: {
           type: String,
-          default: '#000'
-        }
-      }
-    }
+          default: '#000',
+        },
+      },
+    },
   },
-  watch: {
-    showBorder(nue) {
-      this.showBorder = nue;
-    }
+  computed: {
+    badgeIcon() {
+      return this.data.icon;
+    },
   },
   methods: {
     containIcon() {
-      this.data.icon.size = this.data.icon.size === '' ? 'contain' : '';
+      this.badgeIcon.size = this.badgeIcon.size === '' ? 'contain' : '';
     },
     resizeIcon(event) {
       // default: iconSize: contain;
       const deltaY = event.deltaY;
       const actualSize = parseInt(
-        this.data.icon.size === 'contain' || this.data.icon.size === ''
+        this.badgeIcon.size === 'contain' || this.badgeIcon.size === ''
           ? '100%'
-          : this.data.icon.size
+          : this.badgeIcon.size
       );
       // up -> bigger
       if (deltaY > 0) {
-        this.data.icon.size = actualSize + 10 + '%';
+        this.badgeIcon.size = actualSize + 10 + '%';
         // down -> smaller
       } else {
-        this.data.icon.size = actualSize - 10 + '%';
+        this.badgeIcon.size = actualSize - 10 + '%';
       }
     },
     setIconOrigin(event) {
       // top - center - bottom
       // default: backgroundPosition: top center;
       const direction = event.code;
-      const currentPosX = this.data.icon.x;
-      const currentPosY = this.data.icon.y;
+      const currentPosX = this.badgeIcon.x;
+      const currentPosY = this.badgeIcon.y;
       let nextPosX = '';
       let nextPosY = '';
 
@@ -288,12 +288,12 @@ export default {
       }
 
       if (nextPosX !== '') {
-        this.data.icon.x = nextPosX;
+        this.badgeIcon.x = nextPosX;
       }
       if (nextPosY !== '') {
-        this.data.icon.y = nextPosY;
+        this.badgeIcon.y = nextPosY;
       }
-    }
-  }
+    },
+  },
 };
 </script>

@@ -4,7 +4,7 @@
       v-bind:title="title"
       class="fas fa-palette"
       v-bind:class="{
-        active: show === type
+        active: show === type,
       }"
       v-bind:style="{ color: clr }"
       v-on:click="onToggle(badgeKey, type)"
@@ -25,34 +25,34 @@ const componentName = 'ClrPikr';
 export default {
   name: componentName,
   components: {
-    ColorPicker
+    ColorPicker,
   },
   props: {
     badgeKey: {
-      type: Number
+      type: Number,
     },
     title: {
       type: String,
-      default: 'choose color'
+      default: 'choose color',
     },
     type: {
-      type: String
+      type: String,
     },
     show: {
       type: String,
-      default: ''
+      default: '',
     },
     clr: {
       type: String,
-      default: '#CCCCCC'
+      default: '#CCCCCC',
     },
     onToggle: {
-      type: Function
+      type: Function,
     },
     onChange: {
-      type: Function
-    }
-  }
+      type: Function,
+    },
+  },
 };
 </script>
 

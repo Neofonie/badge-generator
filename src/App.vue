@@ -11,8 +11,8 @@ import Overvue from './components/Over.vue';
 export default {
   name: 'app',
   components: {
-    Overvue
-  }
+    Overvue,
+  },
 };
 </script>
 

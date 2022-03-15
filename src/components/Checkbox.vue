@@ -24,29 +24,29 @@ export default {
 
 <style lang="less">
 .checkbox__container {
-  @apply .flex .items-center .select-none .cursor-pointer;
+  @apply flex items-center select-none cursor-pointer;
 
   &:hover .checkmark {
-    @apply .bg-gray-500;
+    @apply bg-gray-500;
   }
 
   input {
-    @apply .absolute .h-0 .w-0 .opacity-0 .cursor-pointer;
+    @apply absolute h-0 w-0 opacity-0 cursor-pointer;
 
     &:checked ~ .checkmark {
-      @apply .bg-neo-red;
+      @apply bg-neo-red;
 
       &:after {
-        @apply .block;
+        @apply block;
       }
     }
   }
 
   .checkmark {
-    @apply .relative .h-6 .w-6 .bg-gray-300 .ml-1;
+    @apply relative h-6 w-6 bg-gray-300 ml-1;
 
     &:after {
-      @apply .absolute .hidden .border-white;
+      @apply absolute hidden border-white;
       content: '';
       left: 9px;
       top: 5px;

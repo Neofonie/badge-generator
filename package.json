@@ -24,9 +24,9 @@
     "vue-wheel": "^1.1.1"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^4.5.13",
-    "@vue/cli-plugin-eslint": "^4.5.13",
-    "@vue/cli-service": "^4.5.13",
+    "@vue/cli-plugin-babel": "^5.0.3",
+    "@vue/cli-plugin-eslint": "^5.0.3",
+    "@vue/cli-service": "^5.0.3",
     "@vue/eslint-config-prettier": "^6.0.0",
     "babel-eslint": "^10.0.3",
     "eslint": "^7.27.0",
@@ -35,7 +35,7 @@
     "husky": "^7.0.4",
     "less": "^4.1.2",
     "less-loader": "^7.3.0",
-    "tailwindcss": "^1.1.4",
+    "tailwindcss": "^2.2.19",
     "lint-staged": "^12.3.5",
     "prettier": "^2.5.1",
     "vue-template-compiler": "^2.6.14"
@@ -43,7 +43,6 @@
   "browserslist": [
     "last 2 versions",
     "> 1%",
-    "maintained node versions",
     "not dead"
   ],
   "lint-staged": {

@@ -75,7 +75,7 @@ module.exports = {
       addComponents({
         '.neo-btn': {
           padding: `${config('theme.spacing.1')} ${config('theme.spacing.3')}`,
-          borderRadius: config('theme.borderRadius.default'),
+          borderRadius: config('theme.borderRadius.DEFAULT'),
           height: config('theme.spacing.10'),
         },
         '.neo-btn--blue': {
@@ -95,8 +95,8 @@ module.exports = {
         '.neo-select': {
           backgroundColor: config('theme.colors.gray.200'),
           borderColor: config('theme.colors.neo-grey'),
-          borderRadius: config('theme.borderRadius.default'),
-          borderWidth: config('theme.borderWidth.default'),
+          borderRadius: config('theme.borderRadius.DEFAULT'),
+          borderWidth: config('theme.borderWidth.DEFAULT'),
           padding: `${config('theme.spacing.1')} ${config('theme.spacing.2')}`,
           height: config('theme.spacing.10'),
         },
